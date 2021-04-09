@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="eclipse-guild:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>eclipse-guild</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="eclipse-guild.war">
+      <element id="artifact" artifact-name="eclipse-guild:war exploded" />
+    </root>
+  </artifact>
+</component>
