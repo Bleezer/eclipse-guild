@@ -2,6 +2,7 @@ package com.eg.repository;
 
 import com.eg.model.Player;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;

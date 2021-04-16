@@ -1,2 +1,5 @@
 com\eg\model\Player.class
+com\eg\rest\PlayerEndpoint.class
+com\eg\rest\JAXRSConfiguration.class
+com\eg\util\TextUtil.class
 com\eg\repository\PlayerRepository.class
