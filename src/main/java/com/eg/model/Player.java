@@ -1,23 +1,30 @@
 package com.eg.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
+@ApiModel(description = "Player resource representation")
 public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @ApiModelProperty("Identifier")
     private Long playerId;
 
     @Column(length = 100, name = "PLAYER_NAME")
     @NotNull
     @Size(min = 1, max = 100)
+    @ApiModelProperty("Name of the player")
     private String playerName;
 
     @Column
     @NotNull
+    @ApiModelProperty("Email of the player")
     private String email;
 
     // ======================================

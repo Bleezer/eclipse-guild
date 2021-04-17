@@ -1,0 +1,162 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Vae Victis APIs exposed from a Java EE back-end to an React front-end",
+    "version" : "1.0.0",
+    "title" : "Vae Victis api",
+    "contact" : {
+      "name" : "Balázs Sörös",
+      "url" : "?",
+      "email" : "bleezer@gmail.com"
+    }
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/eclipse-guild/api",
+  "tags" : [ {
+    "name" : "Player"
+  } ],
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/players" : {
+      "get" : {
+        "tags" : [ "Player" ],
+        "summary" : "Returns all the players",
+        "description" : "",
+        "operationId" : "getPlayers",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "Player found",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Player"
+              }
+            }
+          },
+          "204" : {
+            "description" : "No players found"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Player" ],
+        "summary" : "Creates a player given a JSon Player representation",
+        "description" : "",
+        "operationId" : "createPlayer",
+        "consumes" : [ "application/json" ],
+        "responses" : {
+          "201" : {
+            "description" : "The player is created"
+          },
+          "415" : {
+            "description" : "Format is not JSon"
+          }
+        }
+      }
+    },
+    "/players/count" : {
+      "get" : {
+        "tags" : [ "Player" ],
+        "summary" : "Returns the number of players",
+        "description" : "",
+        "operationId" : "countPlayers",
+        "produces" : [ "text/plain" ],
+        "responses" : {
+          "200" : {
+            "description" : "Number of players found",
+            "schema" : {
+              "type" : "integer",
+              "format" : "int64"
+            }
+          },
+          "204" : {
+            "description" : "No players found"
+          }
+        }
+      }
+    },
+    "/players/{id}" : {
+      "get" : {
+        "tags" : [ "Player" ],
+        "summary" : "Returns a given player",
+        "description" : "",
+        "operationId" : "getPlayer",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "minimum" : 1,
+          "pattern" : "\\d+",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Player found",
+            "schema" : {
+              "$ref" : "#/definitions/Player"
+            }
+          },
+          "400" : {
+            "description" : "Invalid input. Id cannot be lower than 1"
+          },
+          "404" : {
+            "description" : "Player not found"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Player" ],
+        "summary" : "Deletes a player given an id",
+        "description" : "",
+        "operationId" : "dropPlayer",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "minimum" : 1,
+          "pattern" : "\\d+",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Player has been deleted"
+          },
+          "400" : {
+            "description" : "Invalid input. Id cannot be lower than 1"
+          },
+          "500" : {
+            "description" : "Player not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Player" : {
+      "type" : "object",
+      "required" : [ "email", "playerName" ],
+      "properties" : {
+        "playerId" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Identifier"
+        },
+        "playerName" : {
+          "type" : "string",
+          "description" : "Name of the player",
+          "minLength" : 1,
+          "maxLength" : 100
+        },
+        "email" : {
+          "type" : "string",
+          "description" : "Email of the player"
+        }
+      },
+      "description" : "Player resource representation"
+    }
+  }
+}
